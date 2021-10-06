@@ -20,7 +20,7 @@ namespace WoningConsole
 
         private static void GetWoningen(WoningContext context)
         {
-            var woningen = context.Woningen.Include(w => w.Bewoners).ToList();
+            var woningen = context.Woning.Include(w => w.Bewoners).ToList();
             foreach(var woning in woningen)
             {
                 Console.WriteLine(woning.Bewoners[0].Naam);
@@ -30,7 +30,7 @@ namespace WoningConsole
 
         private static void InsertData(WoningContext context)
         {
-            context.Woningen.Add(
+            context.Woning.Add(
                 new Woning
                 {
                     Naam = "leeg huis",
@@ -46,10 +46,10 @@ namespace WoningConsole
 
         private static void UpdateRelatedData(WoningContext context)
         {
-            var woning = context.Woningen.Include(w => w.Bewoners).FirstOrDefault(w => w.ID == 4);
+            var woning = context.Woning.Include(w => w.Bewoners).FirstOrDefault(w => w.Id == 4);
             var bewoner = woning.Bewoners[0];
             bewoner.Naam = "Astrid";
-            context.Bewoners.Update(bewoner);
+            context.Bewoner.Update(bewoner);
             context.SaveChanges();
         }
 
@@ -60,7 +60,7 @@ namespace WoningConsole
 
             using(var ctx = new WoningContext())
             {
-                var woningen = ctx.Woningen.Include(w => w.Bewoners).FirstOrDefault(w => w.ID == 4);
+                var woningen = ctx.Woning.Include(w => w.Bewoners).FirstOrDefault(w => w.Id == 4);
                 bewoners = woningen.Bewoners;
             }
             bewoners[0].Naam = "Nieuwe student";

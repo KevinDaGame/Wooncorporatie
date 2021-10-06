@@ -14,7 +14,7 @@ namespace Company.Data
             List<Woning> woningen;
             using(var ctx = new WoningContext())
             {
-                woningen = ctx.Woningen.Include(w => w.Bewoners).ToList();
+                woningen = ctx.Woning.Include(w => w.Bewoners).ToList();
             }
             return woningen;
         }

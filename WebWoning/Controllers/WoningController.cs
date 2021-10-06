@@ -16,6 +16,8 @@ namespace WebWoning.Controllers
         {
             _repo = new WoningRepo();
             _woningen = new List<Models.Woning>();
+            var woningen = _repo.GetAll();
+            GetBewonersAndWoningen(woningen);
 
 
         }
@@ -26,7 +28,7 @@ namespace WebWoning.Controllers
             {
                 var wn = new Models.Woning();
                 wn.Naam = item.Naam;
-                wn.Id = item.ID;
+                wn.Id = item.Id;
                 item.Bewoners.ForEach(b => wn.Bewoners
                 .Add(new Models.Bewoner()
                 {
@@ -39,23 +41,28 @@ namespace WebWoning.Controllers
         // GET: WoningController
         public ActionResult Index()
         {
-            _repo = new WoningRepo();
-            _woningen = new List<Models.Woning>();
-            var woningen = _repo.GetAll();
-            GetBewonersAndWoningen(woningen);
             return View(_woningen);
         }
 
         // GET: WoningController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var wn = _woningen.FirstOrDefault(w => w.Id == id);
+            return View(wn);
         }
 
         // GET: WoningController/Create
         public ActionResult Create()
         {
             return View();
+        }
+
+
+        public ActionResult CreateBewoner()
+        {
+            var addBewoner = new Models.AddBewonerViewModel();
+            _woningen.ForEach(w=> addBewoner.Woning.Add(
+                )
         }
 
         // POST: WoningController/Create

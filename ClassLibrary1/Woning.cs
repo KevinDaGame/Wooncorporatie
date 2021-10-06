@@ -13,7 +13,7 @@ namespace Company.Data
         Bewoners = new List<Bewoner>();
         }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Naam { get; set; }
         public List<Bewoner> Bewoners { get; set; }
         public int Huisnummer { get; set; }
