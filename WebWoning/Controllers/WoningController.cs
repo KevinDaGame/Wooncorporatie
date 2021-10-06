@@ -1,6 +1,7 @@
 ﻿using Company.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +62,10 @@ namespace WebWoning.Controllers
         public ActionResult CreateBewoner()
         {
             var addBewoner = new Models.AddBewonerViewModel();
-            _woningen.ForEach(w=> addBewoner.Woning.Add(
-                )
+            _woningen.ForEach(w => addBewoner.Woning.Add(
+                new SelectListItem() { Value = w.Id.ToString(), Text = w.Naam }
+                ));
+            return View(addBewoner);
         }
 
         // POST: WoningController/Create
