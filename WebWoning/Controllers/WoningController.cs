@@ -58,7 +58,6 @@ namespace WebWoning.Controllers
             return View();
         }
 
-
         public ActionResult CreateBewoner()
         {
             var addBewoner = new Models.AddBewonerViewModel();
@@ -67,9 +66,22 @@ namespace WebWoning.Controllers
                 ));
             return View(addBewoner);
         }
-
-        // POST: WoningController/Create
+        
         [HttpPost]
+        public ActionResult CreateBewoner(Models.AddBewonerViewModel bewoner)
+        {
+            try
+            {
+                _repo.AddBewonerToWoning(bewoner.GetWoningId(), bewoner.Naam);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+
+            // POST: WoningController/Create
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {

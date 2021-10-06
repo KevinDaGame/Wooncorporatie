@@ -18,5 +18,15 @@ namespace Company.Data
             }
             return woningen;
         }
+
+        public void AddBewonerToWoning(int v, string naam)
+        {
+            using(var ctx = new WoningContext())
+            {
+                var woning = ctx.Woning.FirstOrDefault(w => w.Id == v);
+                woning.Bewoners.Add(new Bewoner() { Naam = naam });
+                ctx.SaveChanges();
+            }
+        }
     }
 }
