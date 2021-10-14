@@ -66,7 +66,7 @@ namespace WebWoning.Controllers
                 ));
             return View(addBewoner);
         }
-        
+
         [HttpPost]
         public ActionResult CreateBewoner(Models.AddBewonerViewModel bewoner)
         {
@@ -79,6 +79,7 @@ namespace WebWoning.Controllers
             {
                 return View();
             }
+        }
 
             // POST: WoningController/Create
             [HttpPost]
